@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ContactBook</string>
+    <string name="my_contacts">My Contacts</string>
+    <string name="search_text_hint">Search by name or number</string>
+    <string name="contact_text">Contact</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
