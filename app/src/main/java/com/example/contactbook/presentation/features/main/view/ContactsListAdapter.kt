@@ -10,7 +10,7 @@ import com.example.contactbook.R
 import com.example.contactbook.data.Contact
 import java.util.*
 
-class ContactsListAdapter: RecyclerView.Adapter<ContactsListAdapter.ViewHolder>() {
+class ContactsListAdapter(private val onClickContact: (contactNumber: Long) -> Unit): RecyclerView.Adapter<ContactsListAdapter.ViewHolder>() {
 
     private val contacts: MutableList<Contact> = LinkedList()
 
@@ -27,7 +27,7 @@ class ContactsListAdapter: RecyclerView.Adapter<ContactsListAdapter.ViewHolder>(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(contacts[position])
+        holder.bind(contacts[position], onClickContact)
     }
 
     override fun getItemCount(): Int {
@@ -39,9 +39,13 @@ class ContactsListAdapter: RecyclerView.Adapter<ContactsListAdapter.ViewHolder>(
         private val nameText = itemView.findViewById<TextView>(R.id.contact_name)
         private val phoneText = itemView.findViewById<TextView>(R.id.phone_text)
 
-        fun bind(contact: Contact) {
+        fun bind(contact: Contact, onClick: (contactNumber: Long) -> Unit) {
             nameText.text = "${contact.firstName} ${contact.secondName}"
             phoneText.text = "${contact.phoneNumber}"
+
+            itemView.setOnClickListener {
+                onClick(contact.phoneNumber)
+            }
         }
     }
 }

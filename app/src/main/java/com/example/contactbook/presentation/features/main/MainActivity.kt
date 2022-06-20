@@ -20,10 +20,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val contactsList = findViewById<RecyclerView>(R.id.contact_list)
-        val adapter = ContactsListAdapter()
+        val adapter = ContactsListAdapter{ phoneNumber ->
+
+        }
         contactsList.adapter = adapter
         contactsList.layoutManager = GridLayoutManager(this, 1)
         loadDataToAdapter(adapter)
+    }
+
+    override fun onResume() {
+        super.onResume()
         viewModel.loadContacts()
     }
 

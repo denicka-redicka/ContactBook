@@ -5,7 +5,7 @@ import androidx.room.*
 @Dao
 interface ContactDao {
 
-    @Query("SELECT * from Contact")
+    @Query("SELECT * from Contact ORDER BY first_name, second_name")
     fun getAll(): List<Contact>
 
     @Insert(onConflict = OnConflictStrategy.ABORT)
