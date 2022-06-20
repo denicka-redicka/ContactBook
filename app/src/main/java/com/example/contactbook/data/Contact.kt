@@ -6,14 +6,16 @@ import androidx.room.PrimaryKey
 
 @Entity ( tableName = "Contact" )
 data class Contact (
+    @PrimaryKey
+    @ColumnInfo(name = "phone_number")
+    val phoneNumber: Long,
     @ColumnInfo(name = "first_name")
     val firstName: String,
     @ColumnInfo(name = "second_name")
     val secondName: String,
-    @PrimaryKey
-    @ColumnInfo(name = "phone_number")
-    val phoneNumber: Long,
     @ColumnInfo(name = "email")
-    val email: String
+    val email: String,
+    @ColumnInfo(name = "image_path")
+    val imagePath: String
     ) {
 }
