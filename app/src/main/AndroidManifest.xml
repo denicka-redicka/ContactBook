@@ -14,7 +14,7 @@
         android:theme="@style/Theme.ContactBook"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.features.contactdetails.ContactDetailsActivity"
+            android:name=".presentation.features.contactdetails.view.ContactDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.features.main.MainActivity"

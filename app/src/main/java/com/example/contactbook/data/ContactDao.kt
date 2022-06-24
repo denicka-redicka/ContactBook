@@ -8,6 +8,9 @@ interface ContactDao {
     @Query("SELECT * from Contact ORDER BY first_name, second_name")
     fun getAll(): List<Contact>
 
+    @Query("SELECT * from Contact WHERE phone_number = :phoneNumber")
+    fun getContact(phoneNumber: Long): Contact
+
     @Insert(onConflict = OnConflictStrategy.ABORT)
     fun insert(contact: Contact): Long
 
