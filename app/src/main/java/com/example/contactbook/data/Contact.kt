@@ -18,4 +18,6 @@ data class Contact (
     @ColumnInfo(name = "image_path")
     val imagePath: String
     ) {
+
+    fun getDisplayName() = "$firstName $secondName"
 }
