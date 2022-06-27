@@ -12,4 +12,8 @@
     <string name="add_second_name">Add second name</string>
     <string name="add_phone_number">Add phone number</string>
     <string name="add_email">Add email</string>
+    <string name="delete_dialog_msg">Are you sure want delete this contact?</string>
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
+    <string name="toast_error_msg">"Something gone wrong.. "</string>
 </resources>

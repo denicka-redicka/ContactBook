@@ -1,14 +1,17 @@
 package com.example.contactbook.presentation.features.contactdetails.view
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
 import com.example.contactbook.R
 import com.example.contactbook.data.Contact
 import com.example.contactbook.presentation.features.contactdetails.viewmodel.ContactDetailsViewModel
@@ -45,13 +48,12 @@ class AddEditContactFragment(private val viewModel: ContactDetailsViewModel) : F
                 emailEditText,
                 contact
             )
-
         }
         if (state == STATE_EDIT_CONTACT) {
             val phoneNumber = arguments?.getLong(PARAM_PHONE_NUMBER)
             if (phoneNumber != null)
                 viewModel.loadContactDetails(phoneNumber)
-            else Toast.makeText(context, "Something wrong with contact", Toast.LENGTH_SHORT).show()
+            else Toast.makeText(context, R.string.toast_error_msg, Toast.LENGTH_SHORT).show()
         }
 
         val saveButton = view.findViewById<Button>(R.id.save_button)
@@ -66,12 +68,18 @@ class AddEditContactFragment(private val viewModel: ContactDetailsViewModel) : F
 
             when (state) {
                 STATE_ADD_CONTACT -> if (newContact != null) viewModel.loadContactToDb(newContact)
-                STATE_EDIT_CONTACT -> if (newContact != null && newContact != oldContact) viewModel.updateContactInDb(
-                    newContact
-                )
+                STATE_EDIT_CONTACT -> saveEditedContact(oldContact, newContact)
             }
         }
+    }
 
+    private fun saveEditedContact(oldContact: Contact?, newContact: Contact?) {
+        if (newContact != null && oldContact != null )
+            when {
+                oldContact.phoneNumber != newContact.phoneNumber -> viewModel.updateContactWithNumber(oldContact, newContact)
+                newContact == oldContact -> Toast.makeText(context, R.string.toast_error_msg, Toast.LENGTH_SHORT).show()
+                oldContact.phoneNumber == newContact.phoneNumber -> viewModel.updateContactInDb(newContact)
+            }
     }
 
     private fun createContactFromScreen(

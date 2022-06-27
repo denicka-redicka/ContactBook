@@ -17,7 +17,7 @@
             android:name=".presentation.features.contactdetails.view.ContactDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.features.main.MainActivity"
+            android:name=".presentation.features.main.view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
