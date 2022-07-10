@@ -1,155 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:background="@color/white"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/add_edit_contact_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/add_edit_img_txt"
-        android:layout_marginTop="64dp"
-        android:src="@drawable/ic_baseline_person_24"/>
+    <data>
 
-    <TextView
-        android:id="@+id/add_edit_img_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/arvo"
-        android:text="@string/change_photo"
-        app:layout_constraintTop_toBottomOf="@id/add_edit_contact_img"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"/>
+    </data>
 
-    <ImageView
-        android:id="@+id/person_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/add_edit_img_txt"
-        app:layout_constraintStart_toStartOf="parent"
-        android:src="@drawable/ic_baseline_perm_identity_24"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="28dp"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="match_parent">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edit_name_layout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/add_edit_img_txt"
-        app:layout_constraintStart_toEndOf="@id/person_img"
-        android:layout_marginEnd="60dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="18dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_text_name"
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/addEditContactImg"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textCapWords"
-            android:hint="@string/add_first_name" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/addEditContactImageText"
+            android:layout_marginTop="64dp"
+            android:src="@drawable/ic_baseline_person_24" />
 
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edit_layout_second_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/edit_name_layout"
-        app:layout_constraintStart_toEndOf="@id/person_img"
-        android:layout_marginEnd="60dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginStart="12dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_text_second_name"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/addEditContactImageText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textCapWords"
-            android:hint="@string/add_second_name"/>
+            android:fontFamily="@font/arvo"
+            android:text="@string/change_photo"
+            app:layout_constraintTop_toBottomOf="@id/addEditContactImg"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <ImageView
-        android:id="@+id/phone_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/edit_layout_second_name"
-        app:layout_constraintStart_toStartOf="parent"
-        android:src="@drawable/ic_baseline_phone_android_24"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="18dp"/>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edit_phone_layout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/edit_layout_second_name"
-        app:layout_constraintStart_toEndOf="@id/phone_img"
-        android:layout_marginEnd="60dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginStart="12dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_text_phone"
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/person_img"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="phone"
-            android:hint="@string/add_phone_number"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintTop_toBottomOf="@id/addEditContactImageText"
+            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/ic_baseline_perm_identity_24"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="28dp" />
 
-    <ImageView
-        android:id="@+id/email_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/edit_phone_layout"
-        app:layout_constraintStart_toStartOf="parent"
-        android:src="@drawable/ic_baseline_email_24"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="18dp"/>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edit_email_layout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:layout_constraintTop_toBottomOf="@id/edit_phone_layout"
-        app:layout_constraintStart_toEndOf="@id/email_img"
-        android:layout_marginEnd="60dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginStart="12dp"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_text_email"
-            android:layout_width="match_parent"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editNameLayout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:hint="@string/add_email"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintTop_toBottomOf="@id/addEditContactImageText"
+            app:layout_constraintStart_toEndOf="@id/person_img"
+            android:layout_marginEnd="60dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="18dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
-    <Button
-        android:id="@+id/save_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Save contact"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_email_layout" />
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editNameText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords"
+                android:hint="@string/add_first_name" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editSecondNameLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/editNameLayout"
+            app:layout_constraintStart_toEndOf="@id/person_img"
+            android:layout_marginEnd="60dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="12dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editSecondNameText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords"
+                android:hint="@string/add_second_name" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/phone_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/editSecondNameLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/ic_baseline_phone_android_24"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="18dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editPhoneLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/editSecondNameLayout"
+            app:layout_constraintStart_toEndOf="@id/phone_img"
+            android:layout_marginEnd="60dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="12dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editPhoneText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:hint="@string/add_phone_number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/email_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/editPhoneLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/ic_baseline_email_24"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="18dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editEmailLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:layout_constraintTop_toBottomOf="@id/editPhoneLayout"
+            app:layout_constraintStart_toEndOf="@id/email_img"
+            android:layout_marginEnd="60dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="12dp"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editEmailText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:hint="@string/add_email" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save contact"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editEmailLayout" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

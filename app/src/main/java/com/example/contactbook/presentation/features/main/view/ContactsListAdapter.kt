@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.contactbook.R
 import com.example.contactbook.data.Contact
+import kotlinx.android.synthetic.main.view_holder_contact.view.*
 import java.util.*
 
 class ContactsListAdapter(private val onClickContact: (contactNumber: Long) -> Unit): RecyclerView.Adapter<ContactsListAdapter.ViewHolder>() {
@@ -40,10 +41,10 @@ class ContactsListAdapter(private val onClickContact: (contactNumber: Long) -> U
     }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        private val imageView = itemView.findViewById<ImageView>(R.id.image_contact)
-        private val nameText = itemView.findViewById<TextView>(R.id.contact_name)
-        private val phoneText = itemView.findViewById<TextView>(R.id.phone_text)
-        private val letterHeader = itemView.findViewById<TextView>(R.id.letter_header)
+        private val imageView = itemView.imageContact
+        private val nameText = itemView.contactName
+        private val phoneText = itemView.phoneText
+        private val letterHeader = itemView.letterHeader
         private companion object {
             private const val HEADER_EMPTY_NAME = "#"
         }

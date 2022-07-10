@@ -6,11 +6,10 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.contactbook.R
 import com.example.contactbook.presentation.features.contactdetails.contract.AddEditContactContract
 import com.example.contactbook.presentation.features.main.viewmodel.ContactsListViewModel
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,7 +27,6 @@ class MainActivity : AppCompatActivity() {
             statusBarColor = Color.TRANSPARENT
         }
 
-        val contactsList = findViewById<RecyclerView>(R.id.contact_list)
         val adapter = ContactsListAdapter { phoneNumber ->
             getPhoneNumber.launch(phoneNumber)
         }
@@ -39,7 +37,6 @@ class MainActivity : AppCompatActivity() {
             viewModel.loadContacts()
         }
 
-        val addContactButton = findViewById<FloatingActionButton>(R.id.add_contact_button)
         addContactButton.setOnClickListener {
             getPhoneNumber.launch(null)
         }

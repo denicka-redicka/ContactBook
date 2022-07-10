@@ -2,12 +2,15 @@ package com.example.contactbook.presentation.features.contactdetails.viewmodel
 
 import android.app.Application
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.contactbook.data.Contact
 import com.example.contactbook.data.ContactRoomDatabase
+import kotlinx.android.synthetic.main.fragment_add_edit_contact.view.*
+import kotlinx.android.synthetic.main.fragment_contact_detail.view.*
 import kotlinx.coroutines.*
 
 class ContactDetailsViewModel(application: Application) : AndroidViewModel(application) {
@@ -27,6 +30,20 @@ class ContactDetailsViewModel(application: Application) : AndroidViewModel(appli
                                                         + SupervisorJob()
                                                         + handlerException)
 
+
+    fun bindEditableUi(view: View, contact: Contact) {
+
+        view.editPhoneText.setText(contact.phoneNumber.toString())
+        if (contact.firstName.isNotEmpty()) view.editNameText.setText(contact.firstName)
+        if (contact.secondName.isNotEmpty()) view.editSecondNameText.setText(contact.secondName)
+        if (contact.email.isNotEmpty()) view.editEmailText.setText(contact.email)
+    }
+
+    fun bindShownUi(view: View, contact: Contact) {
+        view.nameText.text = contact.getDisplayName()
+        view.phoneText.text = contact.phoneNumber.toString()
+        view.emailText.text = contact.email
+    }
     private val dao = ContactRoomDatabase.getInstance(application).getContactDao()
 
     fun loadContactDetails(phoneNumber: Long) {

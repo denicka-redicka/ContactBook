@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    android:id="@+id/frame_contact_detail"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presentation.features.contactdetails.view.ContactDetailsActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-</FrameLayout>
+    <data>
+        <variable
+        name = "viewModel"
+        type="com.example.contactbook.presentation.features.contactdetails.viewmodel.ContactDetailsViewModel"/>
+    </data>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:id="@+id/frameContactList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".presentation.features.contactdetails.view.ContactDetailsActivity">
+
+        </FrameLayout>
+    </ScrollView>
+</layout>

@@ -6,17 +6,23 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.databinding.DataBindingUtil
 import com.example.contactbook.R
+import com.example.contactbook.databinding.ActivityContactDetailsBinding
 import com.example.contactbook.presentation.features.contactdetails.viewmodel.ContactDetailsViewModel
+import kotlinx.android.synthetic.main.activity_contact_details.*
 
 class ContactDetailsActivity : AppCompatActivity(),
     ContactDetailsFragment.OnItemsClickedListener {
 
+    private lateinit var binding: ActivityContactDetailsBinding
     private val viewModel by viewModels<ContactDetailsViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_contact_details)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_contact_details)
+        binding.viewModel = viewModel
+
         window.apply { statusBarColor = Color.TRANSPARENT }
 
         if (savedInstanceState == null) {
@@ -37,13 +43,13 @@ class ContactDetailsActivity : AppCompatActivity(),
         if (phoneNumber != null) {
             supportFragmentManager.beginTransaction()
                 .add(
-                    R.id.frame_contact_detail,
-                    ContactDetailsFragment.create(phoneNumber, viewModel)
+                    frameContactList.id,
+                    ContactDetailsFragment.create(phoneNumber)
                 )
                 .commit()
         } else {
             supportFragmentManager.beginTransaction()
-                .add(R.id.frame_contact_detail, AddEditContactFragment(viewModel))
+                .add(frameContactList.id, AddEditContactFragment())
                 .commit()
         }
     }
@@ -59,7 +65,7 @@ class ContactDetailsActivity : AppCompatActivity(),
 
     override fun onChangedItemClicked(phoneNumber: Long) {
         supportFragmentManager.beginTransaction()
-            .add(R.id.frame_contact_detail,
+            .add(frameContactList.id,
                 AddEditContactFragment
                     .loadFragment(
                         AddEditContactFragment.STATE_EDIT_CONTACT,

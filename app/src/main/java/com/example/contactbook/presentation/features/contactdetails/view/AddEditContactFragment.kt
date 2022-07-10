@@ -1,25 +1,26 @@
 package com.example.contactbook.presentation.features.contactdetails.view
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageButton
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResult
+import androidx.fragment.app.activityViewModels
 import com.example.contactbook.R
 import com.example.contactbook.data.Contact
+import com.example.contactbook.databinding.ActivityContactDetailsBinding
 import com.example.contactbook.presentation.features.contactdetails.viewmodel.ContactDetailsViewModel
+import kotlinx.android.synthetic.main.fragment_add_edit_contact.view.*
 
-class AddEditContactFragment(private val viewModel: ContactDetailsViewModel) : Fragment() {
+class AddEditContactFragment : Fragment() {
 
     private var state: Int? = null
     private var oldContact: Contact? = null
+    private val viewModel: ContactDetailsViewModel by activityViewModels()
 
 
     override fun onCreateView(
@@ -33,22 +34,12 @@ class AddEditContactFragment(private val viewModel: ContactDetailsViewModel) : F
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val nameEditText = view.findViewById<EditText>(R.id.edit_text_name)
-        val secondNameEditText = view.findViewById<EditText>(R.id.edit_text_second_name)
-        val phoneEditText = view.findViewById<EditText>(R.id.edit_text_phone)
-        val emailEditText = view.findViewById<EditText>(R.id.edit_text_email)
-
         state = arguments?.getInt(PARAM_STATE) ?: STATE_ADD_CONTACT
-        viewModel.detailsLiveData.observe(viewLifecycleOwner) { contact ->
+        viewModel.detailsLiveData?.observe(viewLifecycleOwner) { contact ->
             oldContact = contact
-            bindUi(
-                phoneEditText,
-                nameEditText,
-                secondNameEditText,
-                emailEditText,
-                contact
-            )
+            viewModel.bindEditableUi(view, contact)
         }
+
         if (state == STATE_EDIT_CONTACT) {
             val phoneNumber = arguments?.getLong(PARAM_PHONE_NUMBER)
             if (phoneNumber != null)
@@ -56,14 +47,14 @@ class AddEditContactFragment(private val viewModel: ContactDetailsViewModel) : F
             else Toast.makeText(context, R.string.toast_error_msg, Toast.LENGTH_SHORT).show()
         }
 
-        val saveButton = view.findViewById<Button>(R.id.save_button)
+        val saveButton = view.saveButton
         if (state == STATE_EDIT_CONTACT) saveButton.text = "Update contact"
         saveButton.setOnClickListener {
             val newContact = createContactFromScreen(
-                phoneEditText,
-                nameEditText,
-                secondNameEditText,
-                emailEditText
+                view.editPhoneText,
+                view.editNameText,
+                view.editSecondNameText,
+                view.editEmailText
             )
 
             when (state) {
@@ -100,19 +91,6 @@ class AddEditContactFragment(private val viewModel: ContactDetailsViewModel) : F
         null
     }
 
-    private fun bindUi(
-        phoneEditText: EditText,
-        nameEditText: EditText,
-        secondNameEditText: EditText,
-        emailEditText: EditText,
-        contact: Contact
-    ) {
-        phoneEditText.setText(contact.phoneNumber.toString())
-        if (contact.firstName.isNotEmpty()) nameEditText.setText(contact.firstName)
-        if (contact.secondName.isNotEmpty()) secondNameEditText.setText(contact.secondName)
-        if (contact.email.isNotEmpty()) emailEditText.setText(contact.email)
-    }
-
     companion object {
         const val STATE_ADD_CONTACT = 0
         const val STATE_EDIT_CONTACT = 1
@@ -120,7 +98,7 @@ class AddEditContactFragment(private val viewModel: ContactDetailsViewModel) : F
         private const val PARAM_PHONE_NUMBER = "phoneNumber"
 
         fun loadFragment(state: Int, phoneNumber: Long, viewModel: ContactDetailsViewModel) =
-            AddEditContactFragment(viewModel).also {
+            AddEditContactFragment().also {
                 val args = bundleOf(
                     PARAM_STATE to state,
                     PARAM_PHONE_NUMBER to phoneNumber
