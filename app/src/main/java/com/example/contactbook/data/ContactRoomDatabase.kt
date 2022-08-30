@@ -12,14 +12,14 @@ abstract class ContactRoomDatabase: RoomDatabase() {
 
     companion object {
 
-        private var INTSANCE: ContactRoomDatabase? = null
+        private var INSTANCE: ContactRoomDatabase? = null
         private const val CONTACT_DATABASE = "Contact.db"
 
         fun getInstance(context: Context): ContactRoomDatabase {
-            if (INTSANCE == null) {
+            if (INSTANCE == null) {
                 synchronized(ContactRoomDatabase::class.java) {
-                    if (INTSANCE == null) {
-                        INTSANCE = Room.databaseBuilder(
+                    if (INSTANCE == null) {
+                        INSTANCE = Room.databaseBuilder(
                             context,
                             ContactRoomDatabase::class.java,
                             CONTACT_DATABASE
@@ -27,7 +27,7 @@ abstract class ContactRoomDatabase: RoomDatabase() {
                     }
                 }
             }
-            return INTSANCE!!
+            return INSTANCE!!
         }
     }
 }

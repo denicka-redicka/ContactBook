@@ -35,7 +35,7 @@ class AddEditContactFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         state = arguments?.getInt(PARAM_STATE) ?: STATE_ADD_CONTACT
-        viewModel.detailsLiveData?.observe(viewLifecycleOwner) { contact ->
+        viewModel.detailsLiveData.observe(viewLifecycleOwner) { contact ->
             oldContact = contact
             viewModel.bindEditableUi(view, contact)
         }

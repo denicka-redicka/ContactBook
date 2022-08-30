@@ -14,7 +14,7 @@
         <FrameLayout
             android:id="@+id/frameContactList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             tools:context=".presentation.features.contactdetails.view.ContactDetailsActivity">
 
         </FrameLayout>
